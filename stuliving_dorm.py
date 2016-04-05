@@ -51,6 +51,8 @@ class Handler(BaseHandler):
         room_class = []
         for each in response.doc('.roomlist').items():
             rcn = each.find('.to_fname').text()
+            if rcn == '':
+                pass
             price = each.find('.zt_mon1').text()
             square =  each.find('.to_dx').eq(1).text()
             room_profile = each.find('.list_open').find('.gk_1').find('p').text()
@@ -71,7 +73,7 @@ class Handler(BaseHandler):
                 kitchen.append(each_i.text())
 
             room_service = {'bedroom':bedroom,'bathroom':bathroom,'kitchen':kitchen}
-            room = {'rcn':rcn,'price':price,'aquare':square,'room_breif':room_profile,'bed_size':bed_size,'room_service':room_service}
+            room = {'room_name':rcn,'price':price,'square':square,'room_breif':room_profile,'bed_size':bed_size,'room_service':room_service}
             room_class.append(room)
 
 
