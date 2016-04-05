@@ -24,6 +24,10 @@ class Handler(BaseHandler):
     def detail_page(self,response):
         dorm = {}
         profile = ''
+
+        name = response.doc('.inf_na').text()
+        address = response.doc('.inf_1').find('div').eq(1).text()
+
         for each in response.doc('.datai_intr').find('p').items():
             if each.attr('class') !='ro_one':
                 profile = profile+each.text()
@@ -72,6 +76,8 @@ class Handler(BaseHandler):
 
 
         return {
+            "name":name,
+            "address":address,
             "url": response.url,
             "profile": profile,
             "service": service,
