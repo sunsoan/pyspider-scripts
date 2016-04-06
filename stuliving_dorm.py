@@ -67,13 +67,15 @@ class Handler(BaseHandler):
             for each_i in pq(bthr).find('li').items():
                 bathroom.append(each_i.text())
 
+            rest = each.find('.zt_sty').text()
+
             kitchen = []
             ktn = each.find('.list_open').find('.fz_ub').eq(2)
             for each_i in pq(ktn).find('li').items():
                 kitchen.append(each_i.text())
 
             room_service = {'bedroom':bedroom,'bathroom':bathroom,'kitchen':kitchen}
-            room = {'room_name':rcn,'price':price,'square':square,'room_breif':room_profile,'bed_size':bed_size,'room_service':room_service}
+            room = {'room_rest':rest,'room_name':rcn,'price':price,'square':square,'room_breif':room_profile,'bed_size':bed_size,'room_service':room_service}
             room_class.append(room)
 
 
